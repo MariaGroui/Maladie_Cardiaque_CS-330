@@ -2,8 +2,10 @@ from moteur_id3.id3 import ID3
 class ResultValues():
 
     def __init__(self, donnees = None):
+
         # Do computations here
         self.donnees = donnees
+
         # Task 1
         id3 = ID3()
         self.arbre = id3.construit_arbre(donnees)
@@ -23,4 +25,5 @@ class ResultValues():
         :return: un vecteur contenant la profondeur maximale et la profondeur \
         maximale et la profondeur minimale
         """
+
 
