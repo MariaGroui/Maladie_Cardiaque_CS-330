@@ -30,8 +30,8 @@ if len(sys.argv) == 4:
     iteration = 0
 
     for donnee in donnees_test :
-        classe = arbre_test.classifie(donnee)
-        if classe == donnee[0][0] :
+        classe = arbre_test.classifie(donnee[1])
+        if classe == donnee[0]:
             correct = correct + 1
 
         iteration = iteration + 1
