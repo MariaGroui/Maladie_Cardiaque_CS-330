@@ -28,7 +28,7 @@ if len(sys.argv) == 4:
 
     correct = 0
     iteration = 0
-
+    
     for donnee in donnees_test :
         classe = arbre_test.classifie(donnee[1])
         if classe == donnee[0]:
