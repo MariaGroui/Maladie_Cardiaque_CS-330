@@ -31,14 +31,12 @@ if len(sys.argv) == 4:
     
     for donnee in donnees_test :
         classe = arbre_test.classifie(donnee[1])
-        if classe == donnee[0]:
+        if classe[-1] == donnee[0]:
             correct = correct + 1
 
         iteration = iteration + 1
 
-    print("Le pourcentage de précision (bonne classification) est: ")
-    print( correct*100/iteration ) 
-        
+    print("Le pourcentage de précision (bonne classification) est:",correct*100/iteration,"%")
     
 
     
