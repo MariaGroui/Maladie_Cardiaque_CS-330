@@ -20,10 +20,5 @@ class ResultValues():
     def get_results(self):
         return [self.arbre, self.faits_initiaux, self.regles, self.arbre_advance]
 
-    def get_profondeur(self):
-        """ parcourt l'arbre pour etidier sa profondeur
-        :return: un vecteur contenant la profondeur maximale et la profondeur \
-        maximale et la profondeur minimale
-        """
-
+    
 
