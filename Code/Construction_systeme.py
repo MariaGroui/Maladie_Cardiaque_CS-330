@@ -28,15 +28,22 @@ if len(sys.argv) == 4:
 
     correct = 0
     iteration = 0
-    
+    faux_positif = 0
+    faux_negatif = 0
     for donnee in donnees_test :
         classe = arbre_test.classifie(donnee[1])
         if classe[-1] == donnee[0]:
             correct = correct + 1
 
+        else:
+            if classe[-1] == '1':
+                faux_positif = faux_positif + 1
+            elif classe[-1] == '0':
+                faux_negatif = faux_negatif + 1
         iteration = iteration + 1
 
-    print("Le pourcentage de précision (bonne classification) est:",correct*100/iteration,"%")
+    print("Le pourcentage de précision (bonne classification) est:",correct*100/iteration,"%",
+          "\nFaux positifs : ", faux_positif, "\nFaux negatifs : ", faux_negatif)
     
 
     
