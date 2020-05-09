@@ -20,7 +20,7 @@ else:
     print(a_afficher)
     print()
 
-
+"""
     print('regles : ')
     for conditions, c in resultats.regles.items():
         print('Si toutes ces conditins sont valables : ')
@@ -29,7 +29,7 @@ else:
 
         print(' alors la prediction est : ', c)
 
-
+"""
 
 if len(sys.argv) == 4:
 
