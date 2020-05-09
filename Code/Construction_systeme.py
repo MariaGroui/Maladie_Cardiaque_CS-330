@@ -20,6 +20,17 @@ else:
     print(a_afficher)
     print()
 
+
+    print('regles : ')
+    for conditions, c in resultats.regles.items():
+        print('Si toutes ces conditins sont valables : ')
+        for a, v in conditions:
+            print(a, ' = ', v)
+
+        print(' alors la prediction est : ', c)
+
+
+
 if len(sys.argv) == 4:
 
     fichier_test = str(sys.argv[3])
