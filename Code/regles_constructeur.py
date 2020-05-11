@@ -5,6 +5,7 @@ class ReglesConstructeur():
         :param arbre: l'arbre a partir duquel les regles sont construites
         """
         self.arbre = arbre
+        self.regles = self.Regles()
 
     def Regles(self):
         """
@@ -13,6 +14,8 @@ class ReglesConstructeur():
         """
 
         return self.chemin(self.arbre)
+
+
 
     def chemin(self, noeud_courant, regles = {}, conditions = {}):
         if noeud_courant.terminal():
@@ -26,3 +29,24 @@ class ReglesConstructeur():
                 conditions.pop(noeud_courant.attribut)
 
         return regles
+
+    def regle(self, exemple = {}):
+        """
+        prend en parametre un exemple de jeu de donnée et retourne les faits intiaux qui
+        correspondant aux conditions qui déclenchent la règle
+
+        """
+        frozen_key = frozenset(exemple.items())
+        ex[frozen_key] = exemple[0]
+        for conditions,c in self.regles.items() :
+          if conditions.issubset(ex) :
+              return conditions 
+                        
+
+        
+
+
+        
+        
+
+        

@@ -2,38 +2,61 @@ from resultValues import ResultValues
 from data_converter import data_converter
 import sys
 
-if not ( len(sys.argv) == 3 or len(sys.argv) == 4):
+entree = sys.argv
+
+if not (len(entree) == 3 or len(entree) == 4):
+
     print("Il faut entrer le nom de la classe à prédire ",
           "suivi du nom d'un fichier contenant les données d'apprentissage "
           "et enfin, suivi du nom d'un fichier contenant les données à tester (facultatif) ")
 else:
 
-    classe = str(sys.argv[1])
-    fichier = str(sys.argv[2])
+    classe = str(entree[1])
+    fichier = str(entree[2])
     donnees = data_converter(fichier, classe).donnees
 
-    #print(donnees)
-    resultats = ResultValues(donnees)
+    print("Entrez le numéro d'un exemple de donnée en particulier dont vous voulez l'explication de la prédiction, il y'a ", len(donnees)," données")
+    exemple = int(input())
+    exemple = donnees[exemple]
+
+    resultats = ResultValues(donnees,exemple)
     results = resultats.get_results()
+    faits_initiaux = results[1]
     a_afficher = results[0]
+    regles = results[2]
+    
+
+#Arbre de décision 
+
     print("Arbre de décision :")
     print(a_afficher)
     print()
 
+#Règle de l'exemple spécifique
+
+    print ( "La Règle : ")
+    print('Si toutes ces conditions sont valables : ')
+    for a, v in faits_initiaux.items():
+            print(a," = ",v)
+    print("alors la prédiction est : ", faits_initiaux)
+
+#Génération de toutes les règles 
+    
 """
     print('regles : ')
-    for conditions, c in resultats.regles.items():
-        print('Si toutes ces conditins sont valables : ')
+    for conditions, c in regles.items():
+        print('Si toutes ces conditions sont valables : ')
         for a, v in conditions:
             print(a, ' = ', v)
 
         print(' alors la prediction est : ', c)
-
 """
 
-if len(sys.argv) == 4:
+#Précisions de l'arbre de décision
 
-    fichier_test = str(sys.argv[3])
+if len(entree) == 4:
+
+    fichier_test = str(entree[3])
     donnees_test = data_converter(fichier_test, classe).donnees
     arbre_test = results[0]
 
