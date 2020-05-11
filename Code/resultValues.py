@@ -15,7 +15,8 @@ class ResultValues():
         # Task 3
         constructeur_de_regles = ReglesConstructeur(self.arbre)
         self.regles = constructeur_de_regles.regles
-        self.faits_initiaux = constructeur_de_regles.regle(exemple)
+        #self.faits_initiaux est toujours un frozenset, il faudra le manipuler comme tel
+        self.faits_initiaux = constructeur_de_regles.regle_qui_justifie(exemple)
 
         # Task 5
         self.arbre_advance = None

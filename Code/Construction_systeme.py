@@ -12,53 +12,48 @@ if not (len(entree) == 3 or len(entree) == 4):
 else:
 
     classe = str(entree[1])
-    fichier = str(entree[2])
-    donnees = data_converter(fichier, classe).donnees
+    fichier_entrainement = str(entree[2])
+    donnees = data_converter(fichier_entrainement, classe).donnees
 
     print("Entrez le numéro d'un exemple de donnée en particulier dont vous voulez l'explication de la prédiction, il y'a ", len(donnees)," données")
     exemple = int(input())
     exemple = donnees[exemple]
-
-    resultats = ResultValues(donnees,exemple)
+    #exemple = None
+    resultats = ResultValues(donnees, exemple)
     results = resultats.get_results()
-    faits_initiaux = results[1]
-    a_afficher = results[0]
-    regles = results[2]
-    
 
 #Arbre de décision 
 
     print("Arbre de décision :")
-    print(a_afficher)
-    print()
+    print(results[0])
+    #print()
 
-#Règle de l'exemple spécifique
-
-    print ( "La Règle : ")
-    print('Si toutes ces conditions sont valables : ')
-    for a, v in faits_initiaux.items():
-            print(a," = ",v)
-    print("alors la prédiction est : ", faits_initiaux)
-
-#Génération de toutes les règles 
-    
-"""
-    print('regles : ')
-    for conditions, c in regles.items():
-        print('Si toutes ces conditions sont valables : ')
+    """
+#Ensemble de regles generées par l'arbe
+    print('regles construites grace a larbre : ')
+    for conditions, c in results[2].items():
+        print('si toutes ces conditions sont valabes : ')
         for a, v in conditions:
             print(a, ' = ', v)
 
-        print(' alors la prediction est : ', c)
-"""
+        print('alors la prediction est : ', c)
+    """
+#la regle declenchée par l'exemple
+    if not results[1] == None:
+        print('lexemple que vous avez choisi : ','\n', exemple,'\n declenche cette regle : ' )
+        print('Pour : ')
+        for a, v in results[1]:
+            print(a, ' = ', v)
+
+        print('la classe est : ', exemple[0])
 
 #Précisions de l'arbre de décision
 
 if len(entree) == 4:
-
     fichier_test = str(entree[3])
     donnees_test = data_converter(fichier_test, classe).donnees
     arbre_test = results[0]
+    print('Evaluation de la precision de larbre grace au fichier test : ')
 
     correct = 0
     iteration = 0
@@ -78,8 +73,6 @@ if len(entree) == 4:
 
     print("Le pourcentage de précision (bonne classification) est:",correct*100/iteration,"%",
           "\nFaux positifs : ", faux_positif, "\nFaux negatifs : ", faux_negatif)
-    
-
     
 
 

@@ -30,23 +30,24 @@ class ReglesConstructeur():
 
         return regles
 
-    def regle(self, exemple = {}):
+
+
+    def regle_qui_justifie(self, exemple = None):
         """
-        prend en parametre un exemple de jeu de donnée et retourne les faits intiaux qui
-        correspondant aux conditions qui déclenchent la règle
-
+        :param exemple: un jeu de donnée
+        :return : les faits initiaux (attribut et le valeur correspondante) qui correspondent aux conditions de la règle
+        declenchée
         """
-        frozen_key = frozenset(exemple.items())
-        ex[frozen_key] = exemple[0]
-        for conditions,c in self.regles.items() :
-          if conditions.issubset(ex) :
-              return conditions 
-                        
+        if exemple == None:
+        #si aucun exemple n'a ete donné
+            print('aucun exemple à évaluer na été donné ')
+            return None
 
-        
-
-
-        
-        
-
-        
+        else:
+            frozen_attributs_exemple = frozenset(exemple[1].items())
+            for conditions, c in self.regles.items():
+                if conditions.issubset(frozen_attributs_exemple):
+                    return conditions
+        #si aucune regle n'a été trouvée
+        print('cet exemple ne declenche aucune regles')
+        return None
