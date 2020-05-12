@@ -16,8 +16,8 @@ class ReglesConstructeur():
         return self.chemin(self.arbre)
 
 
-
     def chemin(self, noeud_courant, regles = {}, conditions = {}):
+
         if noeud_courant.terminal():
             frozen_key = frozenset(conditions.items())
             regles[frozen_key] = noeud_courant.classe()
@@ -40,7 +40,7 @@ class ReglesConstructeur():
         """
         if exemple == None:
         #si aucun exemple n'a ete donné
-            print('aucun exemple à évaluer na été donné ')
+            print("Aucun exemple à évaluer n'a été donné ")
             return None
 
         else:
@@ -49,5 +49,5 @@ class ReglesConstructeur():
                 if conditions.issubset(frozen_attributs_exemple):
                     return conditions
         #si aucune regle n'a été trouvée
-        print('cet exemple ne declenche aucune regles')
+        print('Cet exemple ne declenche aucune règles')
         return None

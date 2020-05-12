@@ -6,7 +6,7 @@ entree = sys.argv
 
 if not (len(entree) == 3 or len(entree) == 4):
 
-    print("Il faut entrer le nom de la classe à prédire ",
+    print("Il faut sentrer le nom de la classe à prédire ",
           "suivi du nom d'un fichier contenant les données d'apprentissage "
           "et enfin, suivi du nom d'un fichier contenant les données à tester (facultatif) ")
 else:
@@ -22,14 +22,31 @@ else:
     resultats = ResultValues(donnees, exemple)
     results = resultats.get_results()
 
+
+
+
 #Arbre de décision 
 
     print("Arbre de décision :")
     print(results[0])
     #print()
 
+
+
+#Patients malades   
+
     """
-#Ensemble de regles generées par l'arbe
+    patients_malades= []
+    for donnee in donnees :
+        classe = results[0].classifie(donnee[1])
+        if classe[-1] == '1':
+            patients_malades.append(donnee[1])ss
+    """
+
+
+    """
+#Ensemble de règles generées par l'arbe
+
     print('regles construites grace a larbre : ')
     for conditions, c in results[2].items():
         print('si toutes ces conditions sont valabes : ')
@@ -38,14 +55,15 @@ else:
 
         print('alors la prediction est : ', c)
     """
-#la regle declenchée par l'exemple
+#La règle declenchée par l'exemple
+
     if not results[1] == None:
-        print('lexemple que vous avez choisi : ','\n', exemple,'\n declenche cette regle : ' )
-        print('Pour : ')
+        print("L'exemple que vous avez choisi : ','\n", exemple,"\n declenche cette regle : " )
+        print("Pour : ")
         for a, v in results[1]:
             print(a, ' = ', v)
 
-        print('la classe est : ', exemple[0])
+        print("La classe est : ", exemple[0])
 
 #Précisions de l'arbre de décision
 
@@ -53,7 +71,7 @@ if len(entree) == 4:
     fichier_test = str(entree[3])
     donnees_test = data_converter(fichier_test, classe).donnees
     arbre_test = results[0]
-    print('Evaluation de la precision de larbre grace au fichier test : ')
+    print("Evaluation de la précision de l'arbre grâce au fichier test : ")
 
     correct = 0
     iteration = 0
