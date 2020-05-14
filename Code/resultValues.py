@@ -25,6 +25,3 @@ class ResultValues():
     def get_results(self):
 
         return [self.arbre, self.faits_initiaux, self.regles, self.arbre_advance]
-
-
-

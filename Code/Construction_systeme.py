@@ -1,5 +1,6 @@
 from resultValues import ResultValues
 from data_converter import data_converter
+from recherche import Recherche
 import sys
 
 entree = sys.argv
@@ -33,14 +34,14 @@ else:
 
 
 
-#Patients malades   
+  
 
     """
     patients_malades= []
     for donnee in donnees :
         classe = results[0].classifie(donnee[1])
         if classe[-1] == '1':
-            patients_malades.append(donnee[1])ss
+            patients_malades.append(donnee[1])
     """
 
 
@@ -55,6 +56,22 @@ else:
 
         print('alors la prediction est : ', c)
     """
+
+#Patients malades 
+
+    patients_malades = []
+    for conditions,c in results[2].items():
+        if c == '1':
+            patients_malades.append(conditions)
+
+    search = Recherche()
+    conseils = []
+    for noeud_initial in patients_malades:
+        search.recherche(noeud_initial, noeud_but)
+        conseils.append(recherche.noeuds.but)
+        
+
+       
 #La règle declenchée par l'exemple
 
     if not results[1] == None:
