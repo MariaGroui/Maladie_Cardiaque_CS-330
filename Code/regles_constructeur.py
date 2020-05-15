@@ -26,7 +26,7 @@ class ReglesConstructeur():
             for v, e in noeud_courant.enfants.items():
                 conditions[noeud_courant.attribut] = v
                 regles = self.chemin(e, regles, conditions)
-                conditions.pop(noeud_courant.attribut)
+                del conditions[noeud_courant.attribut]
 
         return regles
 

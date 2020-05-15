@@ -23,29 +23,12 @@ else:
     resultats = ResultValues(donnees, exemple)
     results = resultats.get_results()
 
-
-
-
 #Arbre de décision 
 
     print("Arbre de décision :")
     print(results[0])
     #print()
 
-
-
-  
-
-    """
-    patients_malades= []
-    for donnee in donnees :
-        classe = results[0].classifie(donnee[1])
-        if classe[-1] == '1':
-            patients_malades.append(donnee[1])
-    """
-
-
-    """
 #Ensemble de règles generées par l'arbe
 
     print('regles construites grace a larbre : ')
@@ -55,23 +38,9 @@ else:
             print(a, ' = ', v)
 
         print('alors la prediction est : ', c)
-    """
 
-#Patients malades 
 
-    patients_malades = []
-    for conditions,c in results[2].items():
-        if c == '1':
-            patients_malades.append(conditions)
-
-    search = Recherche()
-    conseils = []
-    for noeud_initial in patients_malades:
-        search.recherche(noeud_initial, noeud_but)
-        conseils.append(recherche.noeuds.but)
-        
-
-       
+"""
 #La règle declenchée par l'exemple
 
     if not results[1] == None:
@@ -81,7 +50,7 @@ else:
             print(a, ' = ', v)
 
         print("La classe est : ", exemple[0])
-
+"""
 #Précisions de l'arbre de décision
 
 if len(entree) == 4:
@@ -94,8 +63,14 @@ if len(entree) == 4:
     iteration = 0
     faux_positif = 0
     faux_negatif = 0
+
+    #tableau contenant seulement les patients dont la prediction est qu'ils sont malades
+    patients_malades = []
+
     for donnee in donnees_test :
         classe = arbre_test.classifie(donnee[1])
+        if classe[-1] == '1':
+            patients_malades.append(donnee)
         if classe[-1] == donnee[0]:
             correct = correct + 1
 
@@ -110,4 +85,13 @@ if len(entree) == 4:
           "\nFaux positifs : ", faux_positif, "\nFaux negatifs : ", faux_negatif)
     
 
+#tache 4, proposition de traitement pour les données test
+    regles_sains = []
+    for conditions, prediction in results[2].items():
+        if prediction == '1':
+            regles_sains.append(conditions)
+    recherche_diagnostic = Recherche(regles_sains)
+    for attributs_patient in patients_malades:
+        conseil_de_traitement = recherche_diagnostic.recherche_traitement(frozenset(attributs_patient[1].items()))
+        print('pour guerir il faudrait : ')
 
