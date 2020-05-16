@@ -102,6 +102,8 @@ if len(entree) == 4:
     #print('nombre de patients malades : ', len(patients_malades))
     recherche_diagnostic = Recherche(regles_sains)
 
+    count = 0
+    
     for patient in patients_malades:
         attributs_patient = patient[1]
         conseil_de_traitement = recherche_diagnostic.recherche_traitement(attributs_patient)
@@ -115,3 +117,9 @@ if len(entree) == 4:
         for a in list(conseil_de_traitement.keys()):
             print(a, ' = ', conseil_de_traitement[a], end=' ')
         print('\n')
+
+        if len(conseil_de_traitement) <= 2:
+            count = count + 1
+
+
+    print("Nous avons pu conseiller: ", count," patients, avec un ou deux au plus attributs")
