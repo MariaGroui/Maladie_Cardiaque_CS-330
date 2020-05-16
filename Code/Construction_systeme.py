@@ -25,12 +25,12 @@ else:
 
 #Arbre de décision 
 
-    print("Arbre de décision :")
-    print(results[0])
+    #print("Arbre de décision :")
+    #print(results[0])
     #print()
 
 #Ensemble de règles generées par l'arbe
-
+"""
     print('regles construites grace a larbre : ')
     for conditions, c in results[2].items():
         print('si toutes ces conditions sont valabes : ')
@@ -39,7 +39,7 @@ else:
 
         print('alors la prediction est : ', c)
 
-
+"""
 """
 #La règle declenchée par l'exemple
 
@@ -88,10 +88,22 @@ if len(entree) == 4:
 #tache 4, proposition de traitement pour les données test
     regles_sains = []
     for conditions, prediction in results[2].items():
-        if prediction == '1':
+        if prediction == '0':
             regles_sains.append(conditions)
-    recherche_diagnostic = Recherche(regles_sains)
-    for attributs_patient in patients_malades:
-        conseil_de_traitement = recherche_diagnostic.recherche_traitement(frozenset(attributs_patient[1].items()))
-        print('pour guerir il faudrait : ')
 
+    #for regle in regles_sains: print('voici une regle positive : ', regle)
+    #print('nombre de regles positives : ', len(regles_sains))
+    #print('nombre de patients malades : ', len(patients_malades))
+    recherche_diagnostic = Recherche(regles_sains)
+
+    for patient in patients_malades:
+        attributs_patient = frozenset(patient[1].items())
+        conseil_de_traitement = recherche_diagnostic.recherche_traitement(attributs_patient)
+        print('le patient a guerir a ')
+        for a, v in attributs_patient:
+            print(a, ' = ', v, end=', ')
+
+        print('\npour le guerir il faudrait changer : ')
+        for a, v in conseil_de_traitement:
+            print(a, ' = ', v, end=' ')
+        print('\n')
