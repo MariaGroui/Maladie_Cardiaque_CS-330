@@ -25,16 +25,19 @@ class Recherche:
                 #print('frozenset de condition : ', frozenset(condition))
                 #print('attributs_patient_malade : ', attributs_patient_malade)
                 #if not frozenset(condition).issubset(attributs_patient_malade):
-                if not (condition in attributs_patient_malade):
+                if not(condition in attributs_patient_malade):
                     #print('et un changement de plus a faire ')
                     changements_a_faire = changements_a_faire + 1
                     #print('pour linstant il faut faire ', changements_a_faire, 'changements')
                 if changements_a_faire >= changements_courant:
                     #print('nombre max de changements atteint, on change de regle')
                     break
-            if changements_a_faire < changements_courant:
+
+            if changements_a_faire < changements_courant :
                 changements_courant = changements_a_faire
                 traitement = conditions.difference(attributs_patient_malade)
+
+
 
         return traitement
 

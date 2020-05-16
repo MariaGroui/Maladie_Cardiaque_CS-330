@@ -12,7 +12,7 @@ class NoeudDeDecision:
             :param list donnees: la liste des données qui tombent dans la\
             sous-classification du noeud.
             :param enfants: un dictionnaire associant un fils (sous-noeud) à\
-            chaque valeur de l'attribut du noeud (``None`` si le\
+            chaque valeur de l'attribut du noeud (``None``si le\
             noeud est terminal).
         """
 

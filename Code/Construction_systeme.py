@@ -64,7 +64,8 @@ if len(entree) == 4:
     faux_positif = 0
     faux_negatif = 0
 
-    #tableau contenant seulement les patients dont la prediction est qu'ils sont malades
+#Tableau contenant seulement les patients dont la prediction est qu'ils sont malades
+
     patients_malades = []
 
     for donnee in donnees_test :
@@ -73,7 +74,6 @@ if len(entree) == 4:
             patients_malades.append(donnee)
         if classe[-1] == donnee[0]:
             correct = correct + 1
-
         else:
             if classe[-1] == '1':
                 faux_positif = faux_positif + 1
@@ -85,11 +85,15 @@ if len(entree) == 4:
           "\nFaux positifs : ", faux_positif, "\nFaux negatifs : ", faux_negatif)
     
 
-#tache 4, proposition de traitement pour les données test
+#Proposition de traitement pour les données test
+
     regles_sains = []
     for conditions, prediction in results[2].items():
         if prediction == '0':
             regles_sains.append(conditions)
+
+
+   
 
     #for regle in regles_sains: print('voici une regle positive : ', regle)
     #print('nombre de regles positives : ', len(regles_sains))
@@ -99,11 +103,13 @@ if len(entree) == 4:
     for patient in patients_malades:
         attributs_patient = frozenset(patient[1].items())
         conseil_de_traitement = recherche_diagnostic.recherche_traitement(attributs_patient)
-        print('le patient a guerir a ')
+
+        print('Le patient à guérir a ')
+
         for a, v in attributs_patient:
             print(a, ' = ', v, end=', ')
 
-        print('\npour le guerir il faudrait changer : ')
+        print('\npour le guérir il faudrait changer : ')
         for a, v in conseil_de_traitement:
             print(a, ' = ', v, end=' ')
         print('\n')
