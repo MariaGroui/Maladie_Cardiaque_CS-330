@@ -83,6 +83,7 @@ if len(entree) == 4:
 
     print("Le pourcentage de précision (bonne classification) est:",correct*100/iteration,"%",
           "\nFaux positifs : ", faux_positif, "\nFaux negatifs : ", faux_negatif)
+
     
 
 #Proposition de traitement pour les données test
@@ -90,10 +91,11 @@ if len(entree) == 4:
     regles_sains = []
     for conditions, prediction in results[2].items():
         if prediction == '0':
-            regles_sains.append(conditions)
+            dict_cond = dict()
+            for c in conditions:
+                dict_cond[c[0]]=c[1]
+            regles_sains.append(dict_cond)
 
-
-   
 
     #for regle in regles_sains: print('voici une regle positive : ', regle)
     #print('nombre de regles positives : ', len(regles_sains))
@@ -101,15 +103,15 @@ if len(entree) == 4:
     recherche_diagnostic = Recherche(regles_sains)
 
     for patient in patients_malades:
-        attributs_patient = frozenset(patient[1].items())
+        attributs_patient = patient[1]
         conseil_de_traitement = recherche_diagnostic.recherche_traitement(attributs_patient)
 
         print('Le patient à guérir a ')
 
-        for a, v in attributs_patient:
-            print(a, ' = ', v, end=', ')
+        for a in list(attributs_patient.keys()):
+            print(a, ' = ', attributs_patient[a], end=', ')
 
         print('\npour le guérir il faudrait changer : ')
-        for a, v in conseil_de_traitement:
-            print(a, ' = ', v, end=' ')
+        for a in list(conseil_de_traitement.keys()):
+            print(a, ' = ', conseil_de_traitement[a], end=' ')
         print('\n')
