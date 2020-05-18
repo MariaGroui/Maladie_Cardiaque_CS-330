@@ -25,8 +25,8 @@ else:
 
 #Arbre de décision 
 
-    #print("Arbre de décision :")
-    #print(results[0])
+    print("Arbre de décision :")
+    print(results[0])
     #print()
 
 #Ensemble de règles generées par l'arbe
@@ -40,16 +40,16 @@ else:
         print('alors la prediction est : ', c)
 
 """
-"""
+
 #La règle declenchée par l'exemple
+"""
+     if not(results[1] == None):
+         print("L'exemple que vous avez choisi : ','\n", exemple,"\n declenche cette regle : " )
+         print("Pour : ")
+         for a, v in results[1]:
+             print(a, ' = ', v)
 
-    if not results[1] == None:
-        print("L'exemple que vous avez choisi : ','\n", exemple,"\n declenche cette regle : " )
-        print("Pour : ")
-        for a, v in results[1]:
-            print(a, ' = ', v)
-
-        print("La classe est : ", exemple[0])
+         print("La classe est : ", exemple[0])
 """
 #Précisions de l'arbre de décision
 
@@ -96,10 +96,6 @@ if len(entree) == 4:
                 dict_cond[c[0]]=c[1]
             regles_sains.append(dict_cond)
 
-
-    #for regle in regles_sains: print('voici une regle positive : ', regle)
-    #print('nombre de regles positives : ', len(regles_sains))
-    #print('nombre de patients malades : ', len(patients_malades))
     recherche_diagnostic = Recherche(regles_sains)
 
     count = 0

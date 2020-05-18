@@ -39,7 +39,7 @@ class ReglesConstructeur():
         declenchée
         """
         if exemple == None:
-        #si aucun exemple n'a ete donné
+            
             print("Aucun exemple à évaluer n'a été donné ")
             return None
 
@@ -48,6 +48,6 @@ class ReglesConstructeur():
             for conditions, c in self.regles.items():
                 if conditions.issubset(frozen_attributs_exemple):
                     return conditions
-        #si aucune regle n'a été trouvée
+                
         print('Cet exemple ne declenche aucune règles')
         return None
