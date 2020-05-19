@@ -30,7 +30,7 @@ else:
     #print()
 
 #Ensemble de règles generées par l'arbe
-"""
+
     print('regles construites grace a larbre : ')
     for conditions, c in results[2].items():
         print('si toutes ces conditions sont valabes : ')
@@ -39,18 +39,19 @@ else:
 
         print('alors la prediction est : ', c)
 
-"""
+
 
 #La règle declenchée par l'exemple
-"""
-     if not(results[1] == None):
-         print("L'exemple que vous avez choisi : ','\n", exemple,"\n declenche cette regle : " )
-         print("Pour : ")
-         for a, v in results[1]:
-             print(a, ' = ', v)
 
-         print("La classe est : ", exemple[0])
+    if not(results[1] == None):
+        print("L'exemple que vous avez choisi : ','\n", exemple,"\n declenche cette regle : " )
+        print("Pour : ")
+        for a, v in results[1]:
+            print(a, ' = ', v)
+        print("La classe est : ", exemple[0])
+
 """
+
 #Précisions de l'arbre de décision
 
 if len(entree) == 4:
@@ -119,3 +120,4 @@ if len(entree) == 4:
 
 
     print("Nous avons pu conseiller: ", count," patients, avec un ou deux au plus attributs")
+"""
