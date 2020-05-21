@@ -7,7 +7,7 @@ entree = sys.argv
 
 if not (len(entree) == 3 or len(entree) == 4):
 
-    print("Il faut sentrer le nom de la classe à prédire ",
+    print("Il faut entrer le nom de la classe à prédire ",
           "suivi du nom d'un fichier contenant les données d'apprentissage "
           "et enfin, suivi du nom d'un fichier contenant les données à tester (facultatif) ")
 else:
@@ -19,7 +19,6 @@ else:
     print("Entrez le numéro d'un exemple de donnée en particulier dont vous voulez l'explication de la prédiction, il y'a ", len(donnees)," données")
     exemple = int(input())
     exemple = donnees[exemple]
-    #exemple = None
     resultats = ResultValues(donnees, exemple)
     results = resultats.get_results()
 
@@ -27,7 +26,6 @@ else:
 
     print("Arbre de décision :")
     print(results[0])
-    #print()
 
 #Ensemble de règles generées par l'arbe
 
@@ -50,7 +48,7 @@ else:
             print(a, ' = ', v)
         print("La classe est : ", exemple[0])
 
-"""
+
 
 #Précisions de l'arbre de décision
 
@@ -120,4 +118,20 @@ if len(entree) == 4:
 
 
     print("Nous avons pu conseiller: ", count," patients, avec un ou deux au plus attributs")
+
+
+#Arbre de décision modifié
+
 """
+blablabla
+
+"""
+
+
+
+
+
+
+
+
+

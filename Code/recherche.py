@@ -22,9 +22,9 @@ class Recherche:
         for conditions in self.conditions_pour_etre_sain :
             traitement = dict()
             for condition_sain in list(conditions.keys()):
-                if (condition_sain != "sex" and condition_sain != "age"): 
-                    value_sain = conditions.get(condition_sain)
-                    value_malade = attributs_patient_malade.get(condition_sain)
+                value_sain = conditions.get(condition_sain)
+                value_malade = attributs_patient_malade.get(condition_sain)
+                if (condition_sain == "sex" and value_sain == value_malade) or (condition_sain == "age" and value_sain == value_malade) or (condition_sain != "sex" and condition_sain != "age") :
                     if not(value_sain == value_malade):
                         traitement[condition_sain] = value_sain
                         diff_current = len(traitement)
