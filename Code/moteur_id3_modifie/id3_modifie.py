@@ -32,7 +32,6 @@ class ID3:
                     valeurs = set()
                     attributs[attribut] = valeurs
                 valeurs.add(float(valeur))
-        print(attributs)
         #attributs contient pour chaque attribut, toutes les valeurs qui apparaissent
         # Find the predominant class
         classes = set([row[0] for row in donnees])
@@ -61,7 +60,8 @@ class ID3:
             :return: une instance de NoeudDeDecision correspondant à la racine de\
             l'arbre de décision.
         """
-        
+        #print('les attributs ici prennent ces valeurs : ', attributs)
+        #print('combien de données', len(donnees))
         def classe_unique(donnees):
             """ Vérifie que toutes les données appartiennent à la même classe. """
             
@@ -79,6 +79,7 @@ class ID3:
         # Si toutes les données restantes font partie de la même classe,
         # on peut retourner un noeud terminal.         
         elif classe_unique(donnees):
+            #print('on est au bout dune branche')
             return NoeudDeDecision(None, donnees, str(predominant_class))
             
         else:
@@ -94,28 +95,32 @@ class ID3:
                     if v[0] < min_h[0]: min_h = v
             attribut = min_h[1]
             valeur_de_partition = min_h[2]
+            #print('on va diviser avec : ', attribut, 'et comme valeur de partition : ', valeur_de_partition)
 
             partitions = self.partitionne(donnees, attribut, valeur_de_partition)
-            
+            #print('suite a ca, les partitions sont: ', partitions)
             enfants = {}
-            valeurs_sup=[]
-            valeurs_inf=[]
-            for valeur in attributs[attribut]:
-                if valeur >= valeur_de_partition: valeurs_sup.append(valeur)
-                elif valeur < valeur_de_partition: valeurs_inf.append(valeur)
+
             for sup_ou_egal, partition in partitions.items():
-                if sup_ou_egal:
-                    attributs_adapte = attributs.copy()
-                    attributs_adapte[attribut] = valeurs_sup
-                    enfants[tuple(valeurs_sup)] = self.construit_arbre_recur(partition,
+                #print('on regarde la partition ou sup ou egal est ', sup_ou_egal)
+                attributs_adapte = attributs.copy()
+                #print('avant de faire le tri : ', attributs_adapte[attribut])
+                val_update = set()
+                for valeur in attributs[attribut]:
+                    #print('valeur: ', valeur)
+                    if (valeur >= valeur_de_partition) == sup_ou_egal:
+                        #print('elle est a garder')
+                        val_update.add(valeur)
+                attributs_adapte[attribut]=val_update
+                #print('apres avoir fait le tri : ', attributs_adapte[attribut])
+                #print('construction de lenfant sup ')
+                val_max= max(max(attributs_adapte[attribut]), valeur_de_partition)
+                val_min= min(min(attributs_adapte[attribut]), valeur_de_partition)
+                #print('val min ', val_min, 'val max ', val_max)
+                if not sup_ou_egal: val_max = val_max-0.01
+                enfants[tuple((val_min, val_max))] = self.construit_arbre_recur(partition,
                                                              attributs_adapte,
                                                              predominant_class)
-                elif not sup_ou_egal:
-                    attributs_adapte = attributs.copy()
-                    attributs_adapte[attribut] = valeurs_inf
-                    enfants[tuple(valeurs_inf)] = self.construit_arbre_recur(partition,
-                                                                      attributs_adapte,
-                                                                      predominant_class)
 
             return NoeudDeDecision(attribut, donnees, str(predominant_class), enfants)
 
@@ -238,6 +243,5 @@ class ID3:
         h_C_a_sup = self.h_C_aj(donnees, attribut, valeur_de_partition, sup_ou_egal=True)
         h_C_a_inf = self.h_C_aj(donnees, attribut, valeur_de_partition, sup_ou_egal=False)
         h_c_as = [h_C_a_sup, h_C_a_inf]
-
 
         return sum([p_a * h_c_a for p_a, h_c_a in zip(p_as, h_c_as)])

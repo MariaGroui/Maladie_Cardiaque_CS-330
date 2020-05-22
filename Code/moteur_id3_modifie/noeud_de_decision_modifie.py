@@ -12,7 +12,7 @@ class NoeudDeDecision:
             :param list donnees: la liste des données qui tombent dans la\
             sous-classification du noeud.
             :param enfants: un dictionnaire associant un fils (sous-noeud) à\
-            chaque valeur de l'attribut du noeud (``None``si le\
+            chaque intervalle de valeur de l'attribut du noeud. la clé du dictionnaire est un tuple contenant le min et le max (``None``si le\
             noeud est terminal).
         """
 
@@ -46,16 +46,22 @@ class NoeudDeDecision:
         rep = ''
         if self.terminal():
             rep += 'Alors {}'.format(self.classe().upper())
+            #print('on est au noeud terminal')
         else:
             valeur = donnee[self.attribut]
+            #print('attribut : ', self.attribut, 'valeur : ', valeur)
             #enfant = self.enfants[valeur]
             for interval, sous_arbre in self.enfants.items():
-                if valeur in interval:
+                #print('on essaye')
+                #print('valeur: ', valeur, 'intervale: ', interval[0], interval[1])
+                if interval[0] <= float(valeur) <= interval[1]:
+                    #print('on a trouvé le sous arbre')
                     enfant = sous_arbre
             rep += 'Si {} = {}, '.format(self.attribut, valeur.upper())
             try:
                 rep += enfant.classifie(donnee)
             except:
+                #print('ATTENTION')
                 rep += self.p_class
         return rep
 

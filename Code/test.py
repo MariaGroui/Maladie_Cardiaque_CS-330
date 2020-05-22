@@ -14,6 +14,7 @@ id3 = ID3()
 arbre = id3.construit_arbre(donnees)
 print(arbre)
 
+
 fichier_test = str(entree[3])
 donnees_test = data_converter(fichier_test, classe).donnees
 
@@ -25,8 +26,10 @@ faux_positif = 0
 faux_negatif = 0
 
 for donnee in donnees_test :
-    classe = arbre.classifie(donnee[1])
+    #print('on va classifier une donnée, la vraie classe est ', donnee[0], 'cest parti ')
 
+    classe = arbre.classifie(donnee[1])
+    #print('on la classe comme : ', classe[-1])
     if classe[-1] == donnee[0]:
         correct = correct + 1
     else:
