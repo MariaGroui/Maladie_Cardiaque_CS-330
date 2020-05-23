@@ -31,8 +31,9 @@ class Recherche:
                         if not(value_sain == value_malade):
                             traitement[condition_sain] = value_sain
                             diff_current = len(traitement)
-                    else :
+                    else:
                         same_rule = False
+                        diff_current = len(attributs_patient_malade)
             if diff_current < diff_min:
                 diff_min = diff_current
                 cur_min_traitement = copy.deepcopy(traitement)
