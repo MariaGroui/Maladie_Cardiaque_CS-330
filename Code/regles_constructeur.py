@@ -50,4 +50,5 @@ class ReglesConstructeur():
                     return conditions
                 
         print('Cet exemple ne declenche aucune règles')
+
         return None
