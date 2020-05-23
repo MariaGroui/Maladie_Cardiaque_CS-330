@@ -104,7 +104,7 @@ else:
     for patient in patients_malades:
         attributs_patient = patient[1]
         conseil_de_traitement = recherche_diagnostic.recherche_traitement(attributs_patient)
-
+        
         print('Le patient à guérir a ')
 
         for a in list(attributs_patient.keys()):
