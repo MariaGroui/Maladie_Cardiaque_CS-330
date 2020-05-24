@@ -19,9 +19,9 @@ class Recherche:
         cur_min_traitement = dict()
         diff_min = len(attributs_patient_malade)
         diff_current = diff_min
-        same_rule = True 
-                
-        for conditions in self.conditions_pour_etre_sain :
+
+        for conditions in self.conditions_pour_etre_sain:
+            same_rule = True
             traitement = dict()
             for condition_sain in list(conditions.keys()):
                 if same_rule:
@@ -33,12 +33,11 @@ class Recherche:
                             diff_current = len(traitement)
                     else:
                         same_rule = False
-                        
+
             if diff_current < diff_min and same_rule:
                 diff_min = diff_current
                 cur_min_traitement = copy.deepcopy(traitement)
-                        
-        
+
         return cur_min_traitement
             
   

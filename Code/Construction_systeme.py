@@ -35,7 +35,7 @@ else:
 
     print("Arbre de décision :")
     print(results[0])
-    """
+
 #Ensemble de règles generées par l'arbe - task 3
 
     print("Règles construites grâce à l'arbre : ")
@@ -45,7 +45,7 @@ else:
             print(a, ' = ', v)
 
         print('alors la prediction est : ', c)
-    """
+
 #La règle declenchée par l'exemple - task 3
 
     def Regle_declenchee(patient):
@@ -101,9 +101,9 @@ else:
 
     print("Le pourcentage de précision (bonne classification) est:",correct*100/iteration,"%",
           "\nFaux positifs : ", faux_positif, "\nFaux negatifs : ", faux_negatif)
-
+    print('nombre de patients a guerir ', len(patients_malades))
 #Proposition de traitement pour les données test - task 4
-"""
+
     regles_sains = []
     for conditions, prediction in results[2].items():
         if prediction == '0':
@@ -167,13 +167,3 @@ else:
 
     print("Le nouveau pourcentage de précision (bonne classification) est:", correct_modif*100/iteration_modif,"%",
           "\nFaux positifs : ", faux_positif_modif, "\nFaux negatifs : ", faux_negatif_modif)
-"""
-
-    
-
-    
-
-
-
-
-
