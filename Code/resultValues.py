@@ -4,7 +4,7 @@ from regles_constructeur import ReglesConstructeur
 
 class ResultValues():
 
-    def __init__(self, donnees = None, exemple = None, donnees_modif = None):
+    def __init__(self, donnees = None, donnees_modif = None):
 
         # Do computations here
         self.donnees = donnees
@@ -17,7 +17,7 @@ class ResultValues():
         # Task 3
         constructeur_de_regles = ReglesConstructeur(self.arbre)
         self.regles = constructeur_de_regles.regles
-        self.faits_initiaux = constructeur_de_regles.regle_qui_justifie(exemple)
+        self.faits_initiaux = constructeur_de_regles.Faits_initiaux(self.donnees)
 
         # Task 5
         id3_modif = ID3_modif()

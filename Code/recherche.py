@@ -33,8 +33,8 @@ class Recherche:
                             diff_current = len(traitement)
                     else:
                         same_rule = False
-                        diff_current = len(attributs_patient_malade)
-            if diff_current < diff_min:
+                        
+            if diff_current < diff_min and same_rule:
                 diff_min = diff_current
                 cur_min_traitement = copy.deepcopy(traitement)
                         

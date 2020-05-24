@@ -28,7 +28,7 @@ else:
 
     exemple = int(input())
     exemple = donnees[exemple]
-    resultats = ResultValues(donnees, exemple , donnees_modif)
+    resultats = ResultValues(donnees,donnees_modif)
     results = resultats.get_results()
 
 #Arbre de décision - task 1
@@ -38,7 +38,7 @@ else:
 
 #Ensemble de règles generées par l'arbe - task 3
 
-    print('regles construites grace a larbre : ')
+    print("Règles construites grâce à l'arbre : ")
     for conditions, c in results[2].items():
         print('si toutes ces conditions sont valabes : ')
         for a, v in conditions:
@@ -48,12 +48,18 @@ else:
 
 #La règle declenchée par l'exemple - task 3
 
-    if not(results[1] == None):
-        print("L'exemple que vous avez choisi : ','\n", exemple,"\n declenche cette regle : " )
-        print("Pour : ")
-        for a, v in results[1]:
-            print(a, ' = ', v)
-        print("La classe est : ", exemple[0])
+    frozen_attributs_exemple = frozenset(exemple[1].items())
+    regle_exemple = None
+
+    for conditions, c in results[2].items():
+        if conditions.issubset(frozen_attributs_exemple):
+            regle_exemple = conditions
+        
+    print("L'exemple que vous avez choisi : ','\n", exemple,"\n declenche cette regle : " )
+    print("Pour : ")
+    for a, v in regle_exemple:
+        print(a, ' = ', v)
+    print("La classe est : ", exemple[0])
 
 #Précisions de l'arbre de décision - task 2
 
@@ -104,7 +110,7 @@ else:
     for patient in patients_malades:
         attributs_patient = patient[1]
         conseil_de_traitement = recherche_diagnostic.recherche_traitement(attributs_patient)
-
+        
         print('Le patient à guérir a ')
 
         for a in list(attributs_patient.keys()):
@@ -154,8 +160,9 @@ else:
           "\nFaux positifs : ", faux_positif_modif, "\nFaux negatifs : ", faux_negatif_modif)
 
 
+    
 
-
+    
 
 
 

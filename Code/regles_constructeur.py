@@ -1,5 +1,7 @@
 from moteur_id3.noeud_de_decision import NoeudDeDecision
+
 class ReglesConstructeur():
+
     def __init__(self, arbre = None):
         """
         :param arbre: l'arbre a partir duquel les regles sont construites
@@ -31,24 +33,18 @@ class ReglesConstructeur():
         return regles
 
 
+    def Faits_initiaux(self,donnees):
 
-    def regle_qui_justifie(self, exemple = None):
-        """
-        :param exemple: un jeu de donnée
-        :return : les faits initiaux (attribut et le valeur correspondante) qui correspondent aux conditions de la règle
-        declenchée
-        """
-        if exemple == None:
-            
-            print("Aucun exemple à évaluer n'a été donné ")
-            return None
+         faits = []
+         faits_initiaux = []
+         for donnee in donnees :
+             faits.append(donnee[1])
+         for donnee in faits:
+             faits_init = []
+             for a in list(donnee.keys()):
+                 faits_init.append(donnee[a])
+             faits_initiaux.append(faits_init)
+             
+         
 
-        else:
-            frozen_attributs_exemple = frozenset(exemple[1].items())
-            for conditions, c in self.regles.items():
-                if conditions.issubset(frozen_attributs_exemple):
-                    return conditions
-                
-        print('Cet exemple ne declenche aucune règles')
-
-        return None
+         return faits_initiaux
