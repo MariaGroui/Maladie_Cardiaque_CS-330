@@ -23,6 +23,7 @@ class Recherche:
                 
         for conditions in self.conditions_pour_etre_sain :
             traitement = dict()
+            same_rule = True
             for condition_sain in list(conditions.keys()):
                 if same_rule:
                     value_sain = conditions.get(condition_sain)

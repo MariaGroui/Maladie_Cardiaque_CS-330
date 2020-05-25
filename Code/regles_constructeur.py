@@ -48,3 +48,4 @@ class ReglesConstructeur():
          
 
          return faits_initiaux
+

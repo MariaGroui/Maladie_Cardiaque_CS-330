@@ -40,7 +40,7 @@ else:
 
     print("Règles construites grâce à l'arbre : ")
     for conditions, c in results[2].items():
-        print('si toutes ces conditions sont valabes : ')
+        print('Si toutes ces conditions sont valables : ')
         for a, v in conditions:
             print(a, ' = ', v)
 
@@ -160,6 +160,7 @@ else:
           "\nFaux positifs : ", faux_positif_modif, "\nFaux negatifs : ", faux_negatif_modif)
 
 
+    
     
 
     

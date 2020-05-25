@@ -88,5 +88,5 @@ class NoeudDeDecision:
         a_afficher = self.repr_arbre(level=0)
         max_profondeur = max(a_afficher[1])
         moy_profondeur = sum(a_afficher[1]) / len(a_afficher[1])
-        info_arbre = '\n toutes les profondeurs des noeuds terminaux : ' + str(a_afficher[1]) + '\n profondeur max : ' + str(max_profondeur) + '\n profondeur moyenne : ' + str(moy_profondeur)
+        info_arbre = '\nToutes les profondeurs des noeuds terminaux : ' + str(a_afficher[1]) + '\nProfondeur max : ' + str(max_profondeur) + '\nProfondeur moyenne : ' + str(moy_profondeur)
         return str(a_afficher[0]) + info_arbre
