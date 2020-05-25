@@ -48,19 +48,28 @@ else:
 
 #La règle declenchée par l'exemple - task 3
 
-    frozen_attributs_exemple = frozenset(exemple[1].items())
-    regle_exemple = None
+    def Regle_declenchee(patient):
+        """
+        :param patient: une donnee representant un patient dont on veut la justification du diagnostic
+        :return: rep: un string donnant la regle qui explique le diagnostic
+        """
+        rep = " "
+        frozen_attributs_patient = frozenset(patient[1].items())
+        regle_patient = None
+        for conditions, c in results[2].items():
+            if conditions.issubset(frozen_attributs_patient):
+                regle_patient = conditions
 
-    for conditions, c in results[2].items():
-        if conditions.issubset(frozen_attributs_exemple):
-            regle_exemple = conditions
-        
-    print("L'exemple que vous avez choisi : ','\n", exemple,"\n declenche cette regle : " )
-    print("Pour : ")
-    for a, v in regle_exemple:
-        print(a, ' = ', v)
-    print("La classe est : ", exemple[0])
+        rep += "L'exemple que vous avez choisi : \n" + str(patient) + "\n " "declenche cette regle : \n" + "Pour : "
 
+        for a, v in regle_patient:
+            rep += str(a) + " = " + str(v) + "\n"
+
+        rep += "La classe est : " + str(patient[0])
+        return rep
+
+    #affichage de la regle pour l'exemple choisi
+    print(Regle_declenchee(exemple))
 #Précisions de l'arbre de décision - task 2
 
     fichier_test = str(entree[3])
@@ -92,6 +101,7 @@ else:
 
     print("Le pourcentage de précision (bonne classification) est:",correct*100/iteration,"%",
           "\nFaux positifs : ", faux_positif, "\nFaux negatifs : ", faux_negatif)
+    print('nombre de patients a guerir ', len(patients_malades))
 
 #Proposition de traitement pour les données test - task 4
 
@@ -158,14 +168,4 @@ else:
 
     print("Le nouveau pourcentage de précision (bonne classification) est:", correct_modif*100/iteration_modif,"%",
           "\nFaux positifs : ", faux_positif_modif, "\nFaux negatifs : ", faux_negatif_modif)
-
-
-    
-    
-
-    
-
-
-
-
 

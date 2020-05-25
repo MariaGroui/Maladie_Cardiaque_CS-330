@@ -37,7 +37,7 @@ class ReglesConstructeur():
 
          faits = []
          faits_initiaux = []
-         for donnee in donnees :
+         for donnee in donnees:
              faits.append(donnee[1])
          for donnee in faits:
              faits_init = []
@@ -45,7 +45,7 @@ class ReglesConstructeur():
                  faits_init.append(donnee[a])
              faits_initiaux.append(faits_init)
              
-         
-
+        
          return faits_initiaux
+
 
